@@ -28,29 +28,37 @@
         </div>
         <div id="ground"></div>
     </div>
-    
-    <div id="music-container"></div>
-    <!-- <div id="canva">
-        <canvas id="canvas"></canvas>
-    </div> -->
 
-    <!-- Audio tự động phát -->
-    <audio id="myAudio" autoplay playsinline>
+    <!-- Tap to start music button -->
+    <button id="playButton" style="position: fixed; top: 20px; left: 50%; transform: translateX(-50%); z-index: 9999; padding: 10px 20px; font-size: 16px; background: pink; border: none; border-radius: 5px; cursor: pointer;">
+        💖 Tap to Start Music 💖
+    </button>
+
+    <!-- Audio -->
+    <audio id="myAudio" playsinline>
         <source src="music/final song.mp3" type="audio/mpeg">
         <source src="music/final song.ogg" type="audio/ogg">
     </audio>
 
+    <!-- Canvas for fireworks and hearts -->
+    <canvas id="canvas"></canvas>
+
     <script src="main.js"></script>
 
     <script>
-        window.onload = function() {
-            var audio = document.getElementById("myAudio");
-            audio.muted = false;
-            audio.play().catch(function(e) {
-                console.log('Audio playback failed:', e);
+        window.onload = function () {
+            const audio = document.getElementById("myAudio");
+            const playBtn = document.getElementById("playButton");
+
+            playBtn.addEventListener("click", function () {
+                audio.play().then(() => {
+                    playBtn.style.display = "none"; // Hide the button after playing
+                }).catch(function (e) {
+                    console.log("Audio playback failed:", e);
+                });
             });
 
-            // Hiệu ứng pháo hoa và trái tim
+            // Fireworks and heart animation
             const canvas = document.getElementById("canvas");
             const ctx = canvas.getContext("2d");
             canvas.width = window.innerWidth;
@@ -113,6 +121,7 @@
 
             function animate() {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
+
                 if (Math.random() < 0.1) {
                     fireworks.push(new Firework(random(0, canvas.width), random(0, canvas.height)));
                 }
@@ -138,6 +147,7 @@
 
                 requestAnimationFrame(animate);
             }
+
             animate();
         };
     </script>
