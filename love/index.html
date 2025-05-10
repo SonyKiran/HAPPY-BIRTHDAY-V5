@@ -2,7 +2,6 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Uyên Nhi</title>
   <link rel="shortcut icon" href="./icon.png" type="image/x-icon" />
@@ -11,42 +10,36 @@
     body {
       margin: 0;
       overflow: hidden;
+      background: #000;
       font-family: 'Dancing Script', cursive;
-      background-color: #000;
     }
 
-    #drag-container {
-      position: fixed;
+    #drag-container, #spin-container {
+      position: absolute;
       top: 50%;
       left: 50%;
+      transform-style: preserve-3d;
       transform: translate(-50%, -50%);
-      perspective: 1000px;
-      z-index: 2;
     }
 
     #spin-container {
-      position: relative;
-      transform-style: preserve-3d;
-      animation: spin 20s linear infinite;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
+      animation: spin 30s infinite linear;
     }
 
     #spin-container img {
-      width: 150px;
-      height: 150px;
-      margin: 10px;
-      border-radius: 10px;
+      position: absolute;
+      width: 120px;
+      height: 120px;
       object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
     }
 
     #spin-container p {
-      color: white;
-      font-size: 30px;
+      color: #fff;
+      font-size: 28px;
       text-align: center;
-      width: 100%;
+      margin-top: 200px;
     }
 
     @keyframes spin {
@@ -66,14 +59,11 @@
       z-index: 9999;
       padding: 15px 25px;
       font-size: 18px;
-      font-family: 'Dancing Script', cursive;
       background-color: #ff69b4;
       color: white;
       border: none;
       border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
       cursor: pointer;
-      transition: all 0.3s ease;
     }
 
     canvas {
@@ -83,22 +73,21 @@
       z-index: 0;
     }
 
-    .falling {
+    .falling, .rising {
       position: fixed;
-      top: -50px;
       font-size: 36px;
-      animation: fall 7s linear forwards;
       pointer-events: none;
-      z-index: 3;
+      z-index: 5;
+    }
+
+    .falling {
+      top: -50px;
+      animation: fall 7s linear forwards;
     }
 
     .rising {
-      position: fixed;
       bottom: -50px;
-      font-size: 30px;
-      animation: rise 5s linear forwards;
-      pointer-events: none;
-      z-index: 3;
+      animation: rise 6s linear forwards;
     }
 
     @keyframes fall {
@@ -117,30 +106,32 @@
   </style>
 </head>
 <body>
+
+  <!-- Image Carousel -->
   <div id="drag-container">
     <div id="spin-container">
-      <img src="./images/r1.jpg" alt="" />
-      <img src="./images/r2.jpg" alt="" />
-      <img src="./images/r6.jpg" alt="" />
-      <img src="./images/r7.jpg" alt="" />
-      <img src="./images/r5.jpg" alt="" />
-      <img src="./images/r3.jpg" alt="" />
-      <img src="./images/r10.jpg" alt="" />
-      <img src="./images/r8.jpg" alt="" />
-      <img src="./images/r9.jpg" alt="" />
-      <img src="./images/r4.jpg" alt="" />
+      <img src="./images/r1.jpg" style="transform: rotateY(0deg) translateZ(300px);" />
+      <img src="./images/r2.jpg" style="transform: rotateY(36deg) translateZ(300px);" />
+      <img src="./images/r3.jpg" style="transform: rotateY(72deg) translateZ(300px);" />
+      <img src="./images/r4.jpg" style="transform: rotateY(108deg) translateZ(300px);" />
+      <img src="./images/r5.jpg" style="transform: rotateY(144deg) translateZ(300px);" />
+      <img src="./images/r6.jpg" style="transform: rotateY(180deg) translateZ(300px);" />
+      <img src="./images/r7.jpg" style="transform: rotateY(216deg) translateZ(300px);" />
+      <img src="./images/r8.jpg" style="transform: rotateY(252deg) translateZ(300px);" />
+      <img src="./images/r9.jpg" style="transform: rotateY(288deg) translateZ(300px);" />
+      <img src="./images/r10.jpg" style="transform: rotateY(324deg) translateZ(300px);" />
       <p>Happy Birthday Sathvika</p>
     </div>
   </div>
 
-  <!-- Tap to play music -->
+  <!-- Play Music -->
   <button id="playButton">💖 Tap to Start Music 💖</button>
-
   <audio id="myAudio" playsinline>
-    <source src="music/final song.mp3" type="audio/mpeg" />
-    <source src="music/final song.ogg" type="audio/ogg" />
+    <source src="music/final song.mp3" type="audio/mpeg">
+    <source src="music/final song.ogg" type="audio/ogg">
   </audio>
 
+  <!-- Canvas -->
   <canvas id="canvas"></canvas>
 
   <script>
@@ -149,11 +140,10 @@
       const playBtn = document.getElementById("playButton");
 
       playBtn.addEventListener("click", function () {
-        audio.play().then(() => {
-          playBtn.style.display = "none";
-        }).catch(e => console.log("Audio playback failed:", e));
+        audio.play().then(() => playBtn.style.display = "none");
       });
 
+      // Canvas for fireworks & hearts
       const canvas = document.getElementById("canvas");
       const ctx = canvas.getContext("2d");
       canvas.width = window.innerWidth;
@@ -211,29 +201,24 @@
         this.opacity -= 0.01;
       };
 
-      let fireworks = [];
-      let hearts = [];
+      let fireworks = [], hearts = [];
 
       function animate() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        if (Math.random() < 0.1) {
+        if (Math.random() < 0.1)
           fireworks.push(new Firework(random(0, canvas.width), random(0, canvas.height)));
-        }
 
-        if (Math.random() < 0.05) {
+        if (Math.random() < 0.05)
           hearts.push(new Heart(random(0, canvas.width), canvas.height));
-        }
 
         fireworks.forEach((fw, i) => {
-          fw.draw();
-          fw.update();
+          fw.draw(); fw.update();
           if (fw.life <= 0) fireworks.splice(i, 1);
         });
 
         hearts.forEach((h, i) => {
-          h.draw();
-          h.update();
+          h.draw(); h.update();
           if (h.opacity <= 0) hearts.splice(i, 1);
         });
 
@@ -242,34 +227,27 @@
 
       animate();
 
-      // Create falling rose emojis
-      function createFallingRoses(symbol, interval) {
-        setInterval(() => {
-          const el = document.createElement("div");
-          el.className = "falling";
-          el.textContent = symbol;
-          el.style.left = Math.random() * window.innerWidth + "px";
-          el.style.fontSize = Math.random() * 10 + 30 + "px";
-          document.body.appendChild(el);
-          setTimeout(() => el.remove(), 8000);
-        }, interval);
-      }
+      // Falling roses
+      setInterval(() => {
+        const el = document.createElement("div");
+        el.className = "falling";
+        el.textContent = "🌹";
+        el.style.left = Math.random() * window.innerWidth + "px";
+        el.style.fontSize = Math.random() * 10 + 30 + "px";
+        document.body.appendChild(el);
+        setTimeout(() => el.remove(), 8000);
+      }, 300);
 
-      // Create rising love emojis
-      function createRisingHearts(symbol, interval) {
-        setInterval(() => {
-          const el = document.createElement("div");
-          el.className = "rising";
-          el.textContent = symbol;
-          el.style.left = Math.random() * window.innerWidth + "px";
-          el.style.fontSize = Math.random() * 10 + 25 + "px";
-          document.body.appendChild(el);
-          setTimeout(() => el.remove(), 8000);
-        }, interval);
-      }
-
-      createFallingRoses("🌹", 300);  // falling rose flowers
-      createRisingHearts("💖", 400);  // rising love emojis
+      // Rising hearts
+      setInterval(() => {
+        const el = document.createElement("div");
+        el.className = "rising";
+        el.textContent = "💖";
+        el.style.left = Math.random() * window.innerWidth + "px";
+        el.style.fontSize = Math.random() * 10 + 30 + "px";
+        document.body.appendChild(el);
+        setTimeout(() => el.remove(), 8000);
+      }, 400);
     };
   </script>
 </body>
