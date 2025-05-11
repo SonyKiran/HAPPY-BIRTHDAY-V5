@@ -1,241 +1,146 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Uyên Nhi</title>
-  <link rel="shortcut icon" href="./icon.png" type="image/x-icon" />
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet" />
-  <style>
-    body {
-      margin: 0;
-      overflow: hidden;
-      background: #000;
-      font-family: 'Dancing Script', cursive;
-    }
-
-    #drag-container {
-      position: absolute;
-      width: 100vw;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      perspective: 1000px;
-      z-index: 2;
-    }
-
-    #spin-container {
-      width: 0;
-      height: 0;
-      position: relative;
-      transform-style: preserve-3d;
-      animation: spin 30s infinite linear;
-    }
-
-    #spin-container img {
-      position: absolute;
-      width: 120px;
-      height: 120px;
-      object-fit: cover;
-      border-radius: 10px;
-      box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
-    }
-
-    #spin-container p {
-      color: white;
-      font-size: 30px;
-      text-align: center;
-      position: absolute;
-      transform: translateZ(300px) translateY(160px);
-      width: 1000px;
-    }
-
-    @keyframes spin {
-      from {
-        transform: rotateY(0deg);
-      }
-      to {
-        transform: rotateY(360deg);
-      }
-    }
-
-    #playButton {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 9999;
-      padding: 15px 25px;
-      font-size: 18px;
-      background-color: #ff69b4;
-      color: white;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-    }
-
-    canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: 0;
-    }
-
-    .falling, .rising {
-      position: fixed;
-      font-size: 36px;
-      pointer-events: none;
-      z-index: 5;
-    }
-
-    .falling {
-      top: -50px;
-      animation: fall 7s linear forwards;
-    }
-
-    .rising {
-      bottom: -50px;
-      animation: rise 6s linear forwards;
-    }
-
-    @keyframes fall {
-      to {
-        transform: translateY(110vh) rotate(360deg);
-        opacity: 0;
-      }
-    }
-
-    @keyframes rise {
-      to {
-        transform: translateY(-110vh);
-        opacity: 0;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uyên Nhi</title>
+    <link rel="shortcut icon" href="./icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
 </head>
 <body>
-
-  <!-- Image Carousel -->
-  <div id="drag-container">
-    <div id="spin-container">
-      <img src="https://via.placeholder.com/120x120?text=1" style="transform: rotateY(0deg) translateZ(300px);" />
-      <img src="https://via.placeholder.com/120x120?text=2" style="transform: rotateY(36deg) translateZ(300px);" />
-      <img src="https://via.placeholder.com/120x120?text=3" style="transform: rotateY(72deg) translateZ(300px);" />
-      <img src="https://via.placeholder.com/120x120?text=4" style="transform: rotateY(108deg) translateZ(300px);" />
-      <img src="https://via.placeholder.com/120x120?text=5" style="transform: rotateY(144deg) translateZ(300px);" />
-      <img src="https://via.placeholder.com/120x120?text=6" style="transform: rotateY(180deg) translateZ(300px);" />
-      <img src="https://via.placeholder.com/120x120?text=7" style="transform: rotateY(216deg) translateZ(300px);" />
-      <img src="https://via.placeholder.com/120x120?text=8" style="transform: rotateY(252deg) translateZ(300px);" />
-      <img src="https://via.placeholder.com/120x120?text=9" style="transform: rotateY(288deg) translateZ(300px);" />
-      <img src="https://via.placeholder.com/120x120?text=10" style="transform: rotateY(324deg) translateZ(300px);" />
-      <p>Happy Birthday Sathvika</p>
+    <div id="drag-container">
+        <div id="spin-container">
+            <img src="./images/r1.jpg" alt="">
+            <img src="./images/r2.jpg" alt="">
+            <img src="./images/r6.jpg" alt="">
+            <img src="./images/r7.jpg" alt="">
+            <img src="./images/r5.jpg" alt="">
+            <img src="./images/r3.jpg" alt="">
+            <img src="./images/r10.jpg" alt="">
+            <img src="./images/r8.jpg" alt="">
+            <img src="./images/r9.jpg" alt="">
+            <img src="./images/r4.jpg" alt="">
+            <p>Happy Birthday Sathvika</p>
+        </div>
+        <div id="ground"></div>
     </div>
-  </div>
+    
+    <div id="music-container"></div>
+    <!-- <div id="canva">
+        <canvas id="canvas"></canvas>
+    </div> -->
 
-  <!-- Play Button -->
-  <button id="playButton">💖 Tap to Start Music 💖</button>
+    <!-- Audio tự động phát -->
+    <audio id="myAudio" autoplay playsinline>
+        <source src="music/final song.mp3" type="audio/mpeg">
+        <source src="music/final song.ogg" type="audio/ogg">
+    </audio>
 
-  <!-- Music -->
-  <audio id="myAudio" playsinline>
-    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-  </audio>
+    <script src="main.js"></script>
 
-  <!-- Canvas for fireworks & hearts -->
-  <canvas id="canvas"></canvas>
+    <script>
+        window.onload = function() {
+            var audio = document.getElementById("myAudio");
+            audio.muted = false;
+            audio.play().catch(function(e) {
+                console.log('Audio playback failed:', e);
+            });
 
-  <script>
-    window.onload = function () {
-      const audio = document.getElementById("myAudio");
-      const playBtn = document.getElementById("playButton");
+            // Hiệu ứng pháo hoa và trái tim
+            const canvas = document.getElementById("canvas");
+            const ctx = canvas.getContext("2d");
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
 
-      playBtn.addEventListener("click", function () {
-        audio.play().then(() => playBtn.style.display = "none");
-      });
+            function random(min, max) {
+                return Math.random() * (max - min) + min;
+            }
 
-      const canvas = document.getElementById("canvas");
-      const ctx = canvas.getContext("2d");
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+            function Firework(x, y) {
+                this.x = x;
+                this.y = y;
+                this.radius = random(2, 4);
+                this.color = `hsl(${random(0, 360)}, 100%, 50%)`;
+                this.vx = random(-3, 3);
+                this.vy = random(-3, 3);
+                this.life = 100;
+            }
 
-      function random(min, max) {
-        return Math.random() * (max - min) + min;
-      }
+            Firework.prototype.draw = function () {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+            };
 
-      function Firework(x, y) {
-        this.x = x;
-        this.y = y;
-        this.radius = random(2, 4);
-        this.color = `hsl(${random(0, 360)}, 100%, 50%)`;
-        this.vx = random(-3, 3);
-        this.vy = random(-3, 3);
-        this.life = 100;
-      }
+            Firework.prototype.update = function () {
+                this.x += this.vx;
+                this.y += this.vy;
+                this.life--;
+            };
 
-      Firework.prototype.draw = function () {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fillStyle = this.color;
-        ctx.fill();
-      };
+            function Heart(x, y) {
+                this.x = x;
+                this.y = y;
+                this.size = random(20, 40);
+                this.color = 'red';
+                this.vy = random(-2, -1);
+                this.opacity = 1;
+            }
 
-      Firework.prototype.update = function () {
-        this.x += this.vx;
-        this.y += this.vy;
-        this.life--;
-      };
+            Heart.prototype.draw = function () {
+                ctx.beginPath();
+                ctx.moveTo(this.x, this.y);
+                ctx.bezierCurveTo(this.x - this.size / 2, this.y - this.size / 2, this.x - this.size, this.y + this.size / 3, this.x, this.y + this.size);
+                ctx.bezierCurveTo(this.x + this.size, this.y + this.size / 3, this.x + this.size / 2, this.y - this.size / 2, this.x, this.y);
+                ctx.fillStyle = this.color;
+                ctx.globalAlpha = this.opacity;
+                ctx.fill();
+                ctx.globalAlpha = 1;
+            };
 
-      function Heart(x, y) {
-        this.x = x;
-        this.y = y;
-        this.size = random(20, 40);
-        this.color = 'red';
-        this.vy = random(-2, -1);
-        this.opacity = 1;
-      }
+            Heart.prototype.update = function () {
+                this.y += this.vy;
+                this.opacity -= 0.01;
+            };
 
-      Heart.prototype.draw = function () {
-        ctx.beginPath();
-        ctx.moveTo(this.x, this.y);
-        ctx.bezierCurveTo(this.x - this.size / 2, this.y - this.size / 2, this.x - this.size, this.y + this.size / 3, this.x, this.y + this.size);
-        ctx.bezierCurveTo(this.x + this.size, this.y + this.size / 3, this.x + this.size / 2, this.y - this.size / 2, this.x, this.y);
-        ctx.fillStyle = this.color;
-        ctx.globalAlpha = this.opacity;
-        ctx.fill();
-        ctx.globalAlpha = 1;
-      };
+            let fireworks = [];
+            let hearts = [];
 
-      Heart.prototype.update = function () {
-        this.y += this.vy;
-        this.opacity -= 0.01;
-      };
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                if (Math.random() < 0.1) {
+                    fireworks.push(new Firework(random(0, canvas.width), random(0, canvas.height)));
+                }
+                if (Math.random() < 0.05) {
+                    hearts.push(new Heart(random(0, canvas.width), canvas.height));
+                }
 
-      let fireworks = [], hearts = [];
+                fireworks.forEach((firework, index) => {
+                    firework.draw();
+                    firework.update();
+                    if (firework.life <= 0) {
+                        fireworks.splice(index, 1);
+                    }
+                });
 
-      function animate() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        if (Math.random() < 0.1)
-          fireworks.push(new Firework(random(0, canvas.width), random(0, canvas.height)));
+                hearts.forEach((heart, index) => {
+                    heart.draw();
+                    heart.update();
+                    if (heart.opacity <= 0) {
+                        hearts.splice(index, 1);
+                    }
+                });
 
-        if (Math.random() < 0.05)
-          hearts.push(new Heart(random(0, canvas.width), canvas.height));
-
-        fireworks.forEach((f, i) => {
-          f.draw(); f.update();
-          if (f.life <= 0) fireworks.splice(i, 1);
-        });
-
-        hearts.forEach((h, i) => {
-          h.draw(); h.update();
-          if (h.opacity <= 0) hearts.splice(i, 1);
-        });
-
-        requestAnimationFrame(animate);
-      }
-
-      animate();
-
-      // 🌹 Falling Roses
+                requestAnimationFrame(animate);
+            }
+            animate();
+        };
+       // 🌹 Falling Roses
       setInterval(() => {
         const el = document.createElement("div");
         el.className = "falling";
@@ -256,7 +161,6 @@
         document.body.appendChild(el);
         setTimeout(() => el.remove(), 8000);
       }, 400);
-    };
-  </script>
+    </script>
 </body>
 </html>
