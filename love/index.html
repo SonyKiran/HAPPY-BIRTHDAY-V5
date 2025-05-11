@@ -28,26 +28,28 @@
         </div>
         <div id="ground"></div>
     </div>
+    
+    <div id="music-container"></div>
+    <!-- <div id="canva">
+        <canvas id="canvas"></canvas>
+    </div> -->
 
-    <!-- Play Button -->
-  <button id="playButton">💖 Tap to Start Music 💖</button>
+    <!-- Audio tự động phát -->
+    <audio id="myAudio" autoplay playsinline>
+        <source src="music/final song.mp3" type="audio/mpeg">
+        <source src="music/final song.ogg" type="audio/ogg">
+    </audio>
 
-  <!-- Music -->
-  <audio id="myAudio" playsinline>
-    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-  </audio>
+    <script src="main.js"></script>
 
-  <!-- Canvas for fireworks & hearts -->
-  <canvas id="canvas"></canvas>
+    <script>
+        window.onload = function() {
+            var audio = document.getElementById("myAudio");
+            audio.muted = false;
+            audio.play().catch(function(e) {
+                console.log('Audio playback failed:', e);
+            });
 
-  <script>
-    window.onload = function () {
-      const audio = document.getElementById("myAudio");
-      const playBtn = document.getElementById("playButton");
-
-      playBtn.addEventListener("click", function () {
-        audio.play().then(() => playBtn.style.display = "none");
-      });
             // Hiệu ứng pháo hoa và trái tim
             const canvas = document.getElementById("canvas");
             const ctx = canvas.getContext("2d");
@@ -138,27 +140,6 @@
             }
             animate();
         };
-       // 🌹 Falling Roses
-      setInterval(() => {
-        const el = document.createElement("div");
-        el.className = "falling";
-        el.textContent = "🌹";
-        el.style.left = Math.random() * window.innerWidth + "px";
-        el.style.fontSize = Math.random() * 10 + 30 + "px";
-        document.body.appendChild(el);
-        setTimeout(() => el.remove(), 8000);
-      }, 300);
-
-      // 💖 Rising Hearts
-      setInterval(() => {
-        const el = document.createElement("div");
-        el.className = "rising";
-        el.textContent = "💖";
-        el.style.left = Math.random() * window.innerWidth + "px";
-        el.style.fontSize = Math.random() * 10 + 30 + "px";
-        document.body.appendChild(el);
-        setTimeout(() => el.remove(), 8000);
-      }, 400);
     </script>
 </body>
 </html>
