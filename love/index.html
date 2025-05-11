@@ -28,28 +28,26 @@
         </div>
         <div id="ground"></div>
     </div>
-    
-    <div id="music-container"></div>
-    <!-- <div id="canva">
-        <canvas id="canvas"></canvas>
-    </div> -->
 
-    <!-- Audio tự động phát -->
-    <audio id="myAudio" autoplay playsinline>
-        <source src="music/final song.mp3" type="audio/mpeg">
-        <source src="music/final song.ogg" type="audio/ogg">
-    </audio>
+    <!-- Play Button -->
+  <button id="playButton">💖 Tap to Start Music 💖</button>
 
-    <script src="main.js"></script>
+  <!-- Music -->
+  <audio id="myAudio" playsinline>
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+  </audio>
 
-    <script>
-        window.onload = function() {
-            var audio = document.getElementById("myAudio");
-            audio.muted = false;
-            audio.play().catch(function(e) {
-                console.log('Audio playback failed:', e);
-            });
+  <!-- Canvas for fireworks & hearts -->
+  <canvas id="canvas"></canvas>
 
+  <script>
+    window.onload = function () {
+      const audio = document.getElementById("myAudio");
+      const playBtn = document.getElementById("playButton");
+
+      playBtn.addEventListener("click", function () {
+        audio.play().then(() => playBtn.style.display = "none");
+      });
             // Hiệu ứng pháo hoa và trái tim
             const canvas = document.getElementById("canvas");
             const ctx = canvas.getContext("2d");
