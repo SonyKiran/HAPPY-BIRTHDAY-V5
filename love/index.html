@@ -35,7 +35,6 @@
         <canvas id="canvas"></canvas>
     </div>
     
-    <!-- Audio tự động phát -->
     <audio id="myAudio" autoplay playsinline>
         <source src="music/final song.mp3" type="audio/mpeg">
         <source src="music/final song.ogg" type="audio/ogg">
@@ -50,7 +49,7 @@
             audio.muted = false;
             audio.play()
                 .then(() => {
-                    playButton.style.display = "none"; 
+                    playButton.style.display = "none";
                 })
                 .catch(e => {
                     console.log("Playback failed:", e);
@@ -114,6 +113,7 @@
             this.opacity -= 0.01;
         };
 
+        // Falling Heart
         function FallingHeart(x, y) {
             this.x = x;
             this.y = y;
@@ -151,9 +151,11 @@
             if (Math.random() < 0.1) {
                 fireworks.push(new Firework(random(0, canvas.width), random(0, canvas.height)));
             }
+
             if (Math.random() < 0.05) {
                 hearts.push(new Heart(random(0, canvas.width), canvas.height));
             }
+
             if (Math.random() < 0.1) {
                 fallingHearts.push(new FallingHeart(random(0, canvas.width), 0));
             }
