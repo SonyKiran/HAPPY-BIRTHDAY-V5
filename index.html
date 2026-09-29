@@ -2,316 +2,487 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1"
-  />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>Happy Birthday, Shristi!</title>
+  <title>Happy Birthday, Shristi! 🎂</title>
   <meta
     name="description"
-    content="A special birthday greeting for an amazing colleague, Shristi."
+    content="A special birthday wish for Shristi."
   />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
   <link
-    href="https://fonts.googleapis.com/css2?family=Shippori+Antique&family=Dancing+Script&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Shippori+Antique&display=swap"
     rel="stylesheet"
   />
-
-  <link rel="stylesheet" href="./style.css" />
-
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js"></script>
-  <script src="https://unpkg.com/typeit@8.7.0/dist/index.umd.js"></script>
 
   <style>
     :root {
       --birthday-wallpaper: url("./happy-birthday-background-with-balloons-illustration-ai-generative-free-photo.jpg");
+      --purple: #694095;
+      --text: #392747;
     }
 
-    html {
-      min-height: 100%;
-      background: #eee3fa;
+    * {
+      box-sizing: border-box;
+    }
+
+    [hidden] {
+      display: none !important;
     }
 
     body {
       margin: 0;
       min-height: 100vh;
       min-height: 100dvh;
-      background: #eee3fa;
       font-family: "Shippori Antique", sans-serif;
-      isolation: isolate;
+      color: var(--text);
+      background: #eee3fa;
     }
 
-    #bodyblur {
+    .background {
       position: fixed;
       inset: 0;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      pointer-events: none;
       z-index: -1;
-      opacity: 1;
-      filter: none;
-      background: linear-gradient(
-        135deg,
-        #ffe5ec 0%,
-        #e9ddff 50%,
-        #d9f1ff 100%
-      );
-    }
-
-    #wallpaper {
-      position: absolute;
-      inset: 0;
-      display: block;
-      width: 100%;
-      height: 100%;
-      background-image: var(--birthday-wallpaper);
+      background-image:
+        linear-gradient(
+          to bottom,
+          rgba(246, 230, 255, 0.3),
+          rgba(45, 24, 69, 0.55)
+        ),
+        var(--birthday-wallpaper);
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      transition: transform 1.5s ease;
-      filter: none;
     }
 
-    #bodyblur::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        to bottom,
-        rgba(255, 255, 255, 0.18),
-        rgba(35, 18, 65, 0.55)
-      );
+    main {
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 64px 18px;
     }
 
-    #ket span {
-      display: inline-block;
-      padding: 10px 18px;
-      border-radius: 20px;
-      background: rgba(255, 255, 255, 0.85);
-      color: #45265f;
-      font-style: italic;
+    .gift-screen {
+      text-align: center;
     }
 
-    #kadoIn {
+    .gift-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 210px;
+      height: 210px;
+      padding: 16px;
+      border: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.78);
+      box-shadow: 0 16px 55px rgba(45, 24, 69, 0.2);
+      cursor: pointer;
+      transition: transform 180ms ease;
+    }
+
+    .gift-button:hover {
+      transform: scale(1.05);
+    }
+
+    .gift-button img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .gift-fallback {
+      font-size: 100px;
+    }
+
+    .gift-label {
+      margin-top: 24px;
+      padding: 13px 20px;
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.92);
+      line-height: 1.6;
+    }
+
+    .card {
+      width: min(100%, 720px);
+      padding: clamp(24px, 5vw, 48px);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      border-radius: 28px;
+      background: rgba(255, 252, 255, 0.96);
+      box-shadow: 0 20px 65px rgba(45, 24, 69, 0.22);
+      text-align: center;
+      overflow-wrap: break-word;
+    }
+
+    .decoration {
+      margin: 0 0 14px;
+      font-size: 40px;
+    }
+
+    .eyebrow {
+      margin: 0 0 12px;
+      color: #846592;
+      font-size: 12px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0 0 24px;
+      font-family: "Dancing Script", cursive;
+      font-size: clamp(36px, 7vw, 54px);
+      line-height: 1.15;
+      color: var(--purple);
+    }
+
+    .message {
+      font-size: clamp(15px, 2.5vw, 17px);
+      line-height: 1.9;
+    }
+
+    .message p {
+      margin: 0 0 18px;
+    }
+
+    .message p:last-child {
+      margin-bottom: 0;
+    }
+
+    .message .quote {
+      margin: 24px 0;
+      padding: 20px;
+      border-radius: 16px;
+      background: #f3eaf9;
+      color: #654180;
+      font-size: 19px;
+    }
+
+    .next-button {
+      margin-top: 28px;
+      padding: 14px 26px;
+      border: none;
+      border-radius: 999px;
+      background: var(--purple);
+      color: white;
+      font: inherit;
+      cursor: pointer;
+      box-shadow: 0 6px 18px rgba(105, 64, 149, 0.2);
+    }
+
+    .next-button:hover {
+      background: #543177;
+    }
+
+    button:focus-visible {
+      outline: 3px solid #d29334;
+      outline-offset: 5px;
+    }
+
+    .progress {
+      margin: 20px 0 0;
+      color: #8b7697;
+      font-size: 12px;
+    }
+
+    .music-button {
+      position: fixed;
+      top: 12px;
+      right: 12px;
+      z-index: 2;
+      padding: 10px 15px;
+      border: 1px solid #e7d8ee;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.95);
+      color: var(--text);
+      font: inherit;
+      font-size: 12px;
       cursor: pointer;
     }
   </style>
 </head>
 
 <body>
-  <audio
-    src="./DARLING.mp3"
-    id="linkmp3"
-    class="sembunyi"
-    preload="none"
-  ></audio>
+  <div class="background" aria-hidden="true"></div>
 
-  <div id="bodyblur" aria-hidden="true">
-    <div id="wallpaper"></div>
-  </div>
+  <audio id="birthdayAudio" src="./DARLING.mp3" preload="none" loop></audio>
 
-  <div id="Content">
-    <div id="kadoIn">
-      <img
-        src="./Valentine-Surprise.png"
-        alt="Open your birthday gift"
-      />
-    </div>
+  <button
+    id="musicButton"
+    class="music-button"
+    type="button"
+    hidden
+  >
+    Play music 🎵
+  </button>
 
-    <p id="ket">
-      <span>Open the gift, Birthday Star! 🎁</span>
+  <main>
+    <section id="giftScreen" class="gift-screen">
+      <button
+        id="openGift"
+        class="gift-button"
+        type="button"
+        aria-label="Open your birthday surprise"
+      >
+        <img
+          id="giftImage"
+          src="./Valentine-Surprise.png"
+          alt=""
+        />
+        <span id="giftFallback" class="gift-fallback" hidden>🎁</span>
+      </button>
+
+      <p class="gift-label">Open the gift, Birthday Star! 🎁</p>
+    </section>
+
+    <section
+      id="birthdayCard"
+      class="card"
+      aria-labelledby="messageTitle"
+      hidden
+    >
+      <p id="decoration" class="decoration" aria-hidden="true">🎂✨</p>
+      <p class="eyebrow">Just a little birthday surprise</p>
+
+      <h1 id="messageTitle" tabindex="-1"></h1>
+
+      <div id="messageBody" class="message"></div>
+
+      <button id="nextButton" class="next-button" type="button">
+        A little more for you 💛
+      </button>
+
+      <p id="progress" class="progress"></p>
+    </section>
+  </main>
+
+  <!-- All messages are displayed instantly, with no typing or deleting. -->
+  <template id="openingMessage">
+    <p>
+      I hope this year brings you the things you’ve wished for quietly,
+      worked for patiently, and kept believing in even when they felt
+      far away.
     </p>
 
-    <div class="kumpulanstiker" style="margin-top: 95px;">
-      <img
-        src="https://media.tenor.com/4Ijycn6xFzUAAAAj/mochi-blue-roses.gif"
-        id="fotostiker"
-        alt="Birthday flowers"
-      />
-      <img
-        src="https://feeldreams.github.io/bunga.gif"
-        id="fotostiker1"
-        alt="Flowers"
-      />
-      <img
-        src="https://feeldreams.github.io/pandacoklat.gif"
-        id="fotostiker2"
-        alt="Birthday panda"
-      />
-      <img
-        src="https://media.tenor.com/snFoLI-S9CQAAAAj/milk-and-mocha.gif"
-        id="fotostiker3"
-        alt="Celebrating bears"
-      />
-      <img
-        src="https://feeldreams.github.io/emawh.gif"
-        id="fotostiker4"
-        alt="Happy birthday sticker"
-      />
-      <img
-        src="https://feeldreams.github.io/pandacoklat.gif"
-        id="fotostiker5"
-        alt="Celebration panda"
-      />
-    </div>
+    <p>
+      You’re already halfway there—please don’t forget to pause and
+      give yourself credit for everything it took to get here.
+      There’s so much more waiting for you, and I truly believe you
+      have what it takes to achieve whatever you set your heart on.
+      On the days you doubt yourself, I hope you remember how far
+      you’ve already come.
+    </p>
 
-    <p id="halo" class="halo"></p>
+    <p>
+      More than anything, I wish you happiness you don’t have to
+      pretend, peace that lets your mind rest, good health, and
+      people who appreciate you for who you are.
+    </p>
 
-    <div>
-      <blockquote
-        id="bq"
-        data-text="🎉✨🎂🎁🥳✨🎉🎂🎁🥳✨🎉"
-      >
-        <p id="kalimat">
-          Happy Birthday, Shristi! Wishing an amazing colleague
-          a wonderful birthday. 🎂
-        </p>
+    <p>
+      May you get everything you’re hoping for—and when you do,
+      I hope you have the time and peace to truly enjoy it.
+      One day, may you look around at the life you’ve built,
+      smile, and say:
+    </p>
 
-        <p id="pesan1">
-          A little birthday surprise to make you smile! 🎉
-        </p>
+    <p class="quote">
+      “I used to wish for this. Now I’m living it.”
+    </p>
 
-        <div id="kolombaru">
-          <li id="lv1">🎂</li>
-          <li id="lv2">🎁</li>
-          <li id="lv3">🥳</li>
-          <li id="lv4">💛</li>
-        </div>
+    <p>
+      Until then, I hope life gives you plenty of reasons to smile
+      along the way. Happy Birthday! 💛
+    </p>
+  </template>
 
-        <p id="pesan2">
-          All my best buddies are people I’ve met at work.
-          I know you prefer not to make friends at work, and that’s okay!
-          We sit next to each other every day, and I spend so much
-          of my workday beside you—so of course I wanted to make
-          your birthday a little special! 🎉
-        </p>
+  <template id="workplaceMessage">
+    <p>
+      All my best buddies are people I’ve met at work.
+      I know you prefer not to make friends at work, and that’s okay!
+    </p>
 
-        <p id="pesan3">
-          Do you know what makes having you as a colleague so special?
-        </p>
+    <p>
+      We sit next to each other every day, and I spend so much of
+      my workday beside you—so of course I wanted to make your
+      birthday a little special! 🎉
+    </p>
+  </template>
 
-        <p id="pesan4" class="sty2">
-          You made my early days in the new role so much easier.
-          You probably don’t realize how much you helped!
-          Whenever I felt stressed, I’d turn to you—only to find
-          you were even more stressed. Somehow, we still found
-          a reason to laugh! 😂
-        </p>
+  <template id="supportMessage">
+    <p>
+      You made my early days in the new role so much easier.
+      You probably don’t realize how much you helped!
+    </p>
 
-        <p id="pesan5" class="sty2">
-          I know I talk a lot, so thank you for listening to my endless
-          chatter and helping me out along the way.
-          Your support has meant more than you probably realize!
-        </p>
+    <p>
+      Whenever I felt stressed, I’d turn to you—only to find you
+      were even more stressed. Somehow, we still found a reason
+      to laugh! 😂
+    </p>
+  </template>
 
-        <p id="pesan6" class="sty2">
-          Wishing you happiness, exciting opportunities, well-deserved
-          success, and a little less work stress this year!
-          Happy Birthday, Shristi! Enjoy your special day! 🎉
-        </p>
+  <template id="thanksMessage">
+    <p>
+      I know I talk a lot, so thank you for listening to my endless
+      chatter and helping me out along the way. 😄
+    </p>
 
-        <p id="opsL">One last birthday wish for you! 🎂</p>
-      </blockquote>
-    </div>
+    <p>
+      Your support has meant more than you probably realize.
+      I may not say it every day, but I really do appreciate it.
+    </p>
+  </template>
 
-    <div id="Tombol">
-      <a id="By">&#128140; Next</a>
-    </div>
+  <template id="finalMessage">
+    <p>
+      Wishing you happiness, exciting opportunities, well-deserved
+      success, and a little less work stress this year!
+    </p>
 
-    <!-- Kept for compatibility with your existing a.js. -->
-    <div id="pesanditolak">
-      <img
-        id="stikerditolak"
-        src="https://feeldreams.github.io/weee.gif"
-        alt="Playful birthday sticker"
-      />
-      <p id="kataditolak">
-        Sending you birthday smiles! 🎂
-      </p>
-    </div>
-  </div>
+    <p>
+      May the coming year bring you closer to everything you want,
+      with plenty of wonderful moments to enjoy along the way.
+    </p>
+
+    <p>
+      Enjoy your special day, Shristi.
+      I hope it leaves you with a big smile! 🎉💛
+    </p>
+  </template>
 
   <script>
-    const body = document.querySelector("body");
+    const audio = document.getElementById("birthdayAudio");
+    const musicButton = document.getElementById("musicButton");
+    const giftScreen = document.getElementById("giftScreen");
+    const birthdayCard = document.getElementById("birthdayCard");
+    const messageTitle = document.getElementById("messageTitle");
+    const messageBody = document.getElementById("messageBody");
+    const decoration = document.getElementById("decoration");
+    const nextButton = document.getElementById("nextButton");
+    const progress = document.getElementById("progress");
+    const giftImage = document.getElementById("giftImage");
 
-    const swalst = Swal.mixin({
-      timer: 2300,
-      allowOutsideClick: false,
-      showConfirmButton: false,
-      timerProgressBar: true,
-      imageHeight: 90,
-    });
-
-    const swals = Swal.mixin({
-      allowOutsideClick: false,
-      cancelButtonColor: "#FF0040",
-      imageHeight: 80,
-    });
-
-    // Globals used by the existing animation script.
-    window.nama = "Shristi";
-    window.audio = document.getElementById("linkmp3");
-    window.ftganti = 0;
-    window.fungsi = 0;
-    window.fungsiAwal = 0;
-    window.deffotostiker = document.getElementById("fotostiker").src;
-    window.vketikhalo = "Happy Birthday, Shristi!";
-
-    document.getElementById("Content").style.cssText =
-      "opacity:1;margin-top:16vh";
-
-    document.getElementById("kadoIn").onclick = function () {
-      if (window.fungsiAwal === 0) {
-        window.fungsiAwal = 1;
-
-        window.audio.play().catch(function (error) {
-          console.warn("Birthday audio could not play:", error);
-        });
-
-        document.getElementById("kadoIn").style.cssText =
-          "transition:all .8s ease;transform:scale(10);opacity:0";
-
-        document.getElementById("wallpaper").style.transform =
-          "scale(1.15)";
-
-        document.getElementById("ket").style.display = "none";
-
-        setTimeout(initengahan, 300);
-        setTimeout(inipesan, 500);
+    const messages = [
+      {
+        title: "Happiest Birthday, Shristi!",
+        template: "openingMessage",
+        emoji: "🎂✨",
+        button: "A little more for you 💛"
+      },
+      {
+        title: "From the person sitting next to you…",
+        template: "workplaceMessage",
+        emoji: "🎁😄",
+        button: "Next ✨"
+      },
+      {
+        title: "Something I appreciate about you",
+        template: "supportMessage",
+        emoji: "☕🌟",
+        button: "There’s more 💛"
+      },
+      {
+        title: "A little thank you",
+        template: "thanksMessage",
+        emoji: "🌼💛",
+        button: "One last birthday wish 🎂"
+      },
+      {
+        title: "Have a wonderful birthday!",
+        template: "finalMessage",
+        emoji: "🎉🎂",
+        button: ""
       }
-    };
+    ];
 
-    // Start with Shristi's name without asking for input.
-    async function inipesan() {
-      window.nama = "Shristi";
-      window.vketikhalo = "Happy Birthday, Shristi!";
-      mulainama();
+    let currentMessage = 0;
+
+    // Show an emoji gift if the local gift image is unavailable.
+    function showGiftFallback() {
+      giftImage.hidden = true;
+      document.getElementById("giftFallback").hidden = false;
     }
 
-    // Final birthday message: no navigation or photo pages.
-    async function pertanyaan() {
-      await swals.fire({
-        title: "Happy Birthday, Shristi! 🎂",
-        text:
-          "Thank you for being such a supportive colleague. " +
-          "Wishing you more happiness, less stress, and plenty of " +
-          "reasons to smile. Enjoy your special day! 🎉",
-        showCancelButton: false,
-        confirmButtonText: "Thank you! 💛",
-        allowOutsideClick: false,
-      });
+    giftImage.addEventListener("error", showGiftFallback);
 
-      document.getElementById("Tombol").style.display = "none";
-      document.getElementById("opsL").style.display = "none";
+    if (giftImage.complete && giftImage.naturalWidth === 0) {
+      showGiftFallback();
     }
+
+    function updateMusicButton() {
+      musicButton.textContent = audio.paused
+        ? "Play music 🎵"
+        : "Pause music 🔇";
+
+      musicButton.setAttribute(
+        "aria-label",
+        audio.paused ? "Play birthday music" : "Pause birthday music"
+      );
+    }
+
+    async function playMusic() {
+      try {
+        await audio.play();
+      } catch (error) {
+        // The greeting still works when audio is unavailable.
+        console.info("Music could not start:", error.message);
+      }
+
+      updateMusicButton();
+    }
+
+    function showMessage(index) {
+      const message = messages[index];
+      const template = document.getElementById(message.template);
+
+      // Insert the entire message instantly.
+      // No typing animation, deletion, looping, or automatic delay.
+      messageTitle.textContent = message.title;
+      decoration.textContent = message.emoji;
+      messageBody.replaceChildren(template.content.cloneNode(true));
+
+      const isLastMessage = index === messages.length - 1;
+
+      nextButton.hidden = isLastMessage;
+      nextButton.textContent = message.button;
+      progress.textContent = isLastMessage
+        ? "Made with warm birthday wishes 💛"
+        : `${index + 1} of ${messages.length}`;
+
+      window.scrollTo({ top: 0, behavior: "instant" });
+      messageTitle.focus({ preventScroll: true });
+    }
+
+    document.getElementById("openGift").addEventListener("click", () => {
+      giftScreen.hidden = true;
+      birthdayCard.hidden = false;
+      musicButton.hidden = false;
+
+      showMessage(currentMessage);
+      playMusic();
+    });
+
+    nextButton.addEventListener("click", () => {
+      if (currentMessage < messages.length - 1) {
+        currentMessage += 1;
+        showMessage(currentMessage);
+      }
+    });
+
+    musicButton.addEventListener("click", () => {
+      if (audio.paused) {
+        playMusic();
+      } else {
+        audio.pause();
+      }
+    });
+
+    audio.addEventListener("play", updateMusicButton);
+    audio.addEventListener("pause", updateMusicButton);
   </script>
-
-  <script src="./a.js"></script>
 </body>
 </html>
