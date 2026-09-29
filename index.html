@@ -7,7 +7,7 @@
   <title>Happy Birthday, Shristi! 🎂</title>
   <meta
     name="description"
-    content="A special birthday wish for Shristi."
+    content="A special birthday surprise for Shristi."
   />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -49,7 +49,7 @@
       background-image:
         linear-gradient(
           to bottom,
-          rgba(246, 230, 255, 0.3),
+          rgba(246, 230, 255, 0.35),
           rgba(45, 24, 69, 0.55)
         ),
         var(--birthday-wallpaper);
@@ -65,10 +65,11 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 36px 18px;
+      padding: 40px 18px;
     }
 
     .gift-screen {
+      width: min(100%, 440px);
       text-align: center;
     }
 
@@ -76,37 +77,42 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 210px;
-      height: 210px;
-      padding: 16px;
-      border: 0;
+      width: 250px;
+      height: 250px;
+      padding: 12px;
+      border: 3px solid rgba(255, 255, 255, 0.95);
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.8);
-      box-shadow: 0 16px 55px rgba(45, 24, 69, 0.2);
+      background: #fffaf0;
+      box-shadow: 0 16px 55px rgba(45, 24, 69, 0.22);
       cursor: pointer;
       transition: transform 180ms ease;
     }
 
     .gift-button:hover {
-      transform: scale(1.05);
+      transform: scale(1.04) rotate(-2deg);
     }
 
-    .gift-button img {
+    .friendship-art {
       width: 100%;
       height: 100%;
-      object-fit: contain;
-    }
-
-    .gift-fallback {
-      font-size: 100px;
     }
 
     .gift-label {
-      margin-top: 24px;
-      padding: 13px 20px;
+      margin: 24px 0 0;
+      padding: 15px 20px;
       border-radius: 24px;
-      background: rgba(255, 255, 255, 0.92);
-      line-height: 1.6;
+      background: rgba(255, 255, 255, 0.94);
+      line-height: 1.7;
+    }
+
+    .gift-label strong {
+      display: block;
+      color: var(--purple);
+      font-size: 19px;
+    }
+
+    .gift-label span {
+      font-size: 14px;
     }
 
     .card {
@@ -114,7 +120,7 @@
       padding: clamp(24px, 5vw, 48px);
       border: 1px solid rgba(255, 255, 255, 0.9);
       border-radius: 28px;
-      background: rgba(255, 252, 255, 0.96);
+      background: rgba(255, 252, 255, 0.97);
       box-shadow: 0 20px 65px rgba(45, 24, 69, 0.22);
       text-align: center;
       overflow-wrap: break-word;
@@ -128,8 +134,8 @@
     .eyebrow {
       margin: 0 0 12px;
       color: #846592;
-      font-size: 12px;
-      letter-spacing: 3px;
+      font-size: 11px;
+      letter-spacing: 2px;
       text-transform: uppercase;
     }
 
@@ -137,7 +143,7 @@
       margin: 0 0 24px;
       font-family: "Dancing Script", cursive;
       font-size: clamp(36px, 7vw, 54px);
-      line-height: 1.15;
+      line-height: 1.2;
       color: var(--purple);
     }
 
@@ -161,7 +167,7 @@
       border-radius: 16px;
       background: #f3eaf9;
       color: #654180;
-      font-size: 19px;
+      font-size: 18px;
     }
 
     .navigation {
@@ -229,19 +235,129 @@
         id="openGift"
         class="gift-button"
         type="button"
-        aria-label="Open your birthday surprise"
+        aria-label="High five! Open Shristi's birthday surprise"
       >
-        <img
-          id="giftImage"
-          src="./Valentine-Surprise.png"
-          alt=""
-        />
-        <span id="giftFallback" class="gift-fallback" hidden>
-          🎁
-        </span>
+        <!-- Friendship illustration: two characters high-fiving. -->
+        <!-- Built into the HTML; no separate image is required. -->
+        <svg
+          class="friendship-art"
+          viewBox="0 0 240 240"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+          focusable="false"
+        >
+          <circle cx="120" cy="120" r="112" fill="#FFF3D6" />
+
+          <!-- Confetti -->
+          <path
+            d="M44 64l7 7M190 64l-6 8M59 40l3 9M177 38l-3 10"
+            stroke="#A28ADE"
+            stroke-width="5"
+            stroke-linecap="round"
+          />
+          <circle cx="35" cy="108" r="4" fill="#EFB847" />
+          <circle cx="205" cy="105" r="4" fill="#56ADA4" />
+          <circle cx="82" cy="34" r="3" fill="#56ADA4" />
+          <circle cx="157" cy="28" r="3" fill="#EFB847" />
+
+          <!-- High-five sparkle -->
+          <path
+            d="M120 30v13M99 39l8 9M141 39l-8 9"
+            fill="none"
+            stroke="#EFB847"
+            stroke-width="5"
+            stroke-linecap="round"
+          />
+
+          <!-- Arms -->
+          <path
+            d="M85 151Q107 125 117 74"
+            fill="none"
+            stroke="#D79C73"
+            stroke-width="15"
+            stroke-linecap="round"
+          />
+          <path
+            d="M155 151Q134 125 123 74"
+            fill="none"
+            stroke="#A96F50"
+            stroke-width="15"
+            stroke-linecap="round"
+          />
+
+          <!-- Hands -->
+          <path
+            d="M116 81l-2-19M122 81l3-19"
+            fill="none"
+            stroke="#D79C73"
+            stroke-width="9"
+            stroke-linecap="round"
+          />
+          <path
+            d="M125 81l3-18"
+            fill="none"
+            stroke="#A96F50"
+            stroke-width="8"
+            stroke-linecap="round"
+          />
+
+          <!-- Bodies -->
+          <path
+            d="M38 207v-38a34 34 0 0168 0v38"
+            fill="#55ADA5"
+          />
+          <path
+            d="M134 207v-38a34 34 0 0168 0v38"
+            fill="#A28ADE"
+          />
+
+          <!-- Heads -->
+          <circle cx="72" cy="113" r="27" fill="#D79C73" />
+          <circle cx="168" cy="113" r="27" fill="#A96F50" />
+
+          <!-- Hair -->
+          <path
+            d="M45 108c-3-36 52-44 55-5-12-3-22-10-27-18-5 13-16 20-28 23"
+            fill="#443047"
+          />
+          <path
+            d="M141 109c-3-37 54-42 55-3-12-1-24-8-29-18-5 12-15 19-26 21"
+            fill="#443047"
+          />
+
+          <!-- Eyes -->
+          <g fill="#392747">
+            <circle cx="63" cy="115" r="2.4" />
+            <circle cx="81" cy="115" r="2.4" />
+            <circle cx="159" cy="115" r="2.4" />
+            <circle cx="177" cy="115" r="2.4" />
+          </g>
+
+          <!-- Smiles -->
+          <path
+            d="M65 124q7 8 14 0M161 124q7 8 14 0"
+            fill="none"
+            stroke="#633F37"
+            stroke-width="3"
+            stroke-linecap="round"
+          />
+
+          <!-- Shirt details -->
+          <path
+            d="M61 153q11 10 22 0M157 153q11 10 22 0"
+            fill="none"
+            stroke="#FFFFFF"
+            stroke-opacity=".7"
+            stroke-width="4"
+            stroke-linecap="round"
+          />
+        </svg>
       </button>
 
-      <p class="gift-label">Open the gift, Birthday Star! 🎁</p>
+      <p class="gift-label">
+        <strong>A birthday high-five, Shristi! 🙌</strong>
+        <span>Tap to open your little surprise 🎉</span>
+      </p>
     </section>
 
     <section
@@ -250,11 +366,9 @@
       aria-labelledby="messageTitle"
       hidden
     >
-      <p id="decoration" class="decoration" aria-hidden="true">
-        🎂✨
-      </p>
+      <p id="decoration" class="decoration" aria-hidden="true"></p>
 
-      <p class="eyebrow">Just a little birthday surprise</p>
+      <p class="eyebrow">A little surprise, with warm wishes</p>
 
       <h1 id="messageTitle" tabindex="-1"></h1>
 
@@ -308,17 +422,17 @@
     <p>
       May you get everything you’re hoping for—and when you do,
       I hope you have the time and peace to truly enjoy it.
-      One day, may you look around at the life you’ve built,
-      smile, and say:
     </p>
 
     <p class="quote">
-      “I used to wish for this. Now I’m living it.”
+      I wish you everything your heart hopes for. May the life
+      you’re working so hard to build become everything you
+      want it to be—and even more beautiful than you imagined. ✨
     </p>
 
     <p>
       Until then, I hope life gives you plenty of reasons to smile
-      along the way. Happy Birthday! 💛
+      along the way. Happy Birthday! 🎂
     </p>
   </template>
 
@@ -343,17 +457,16 @@
 
     <p>
       Whenever I felt stressed, I’d turn to you—only to find you
-      were even more stressed. Somehow, I found a reason
+      were even more stressed. Somehow, we still found a reason
       to laugh! 😂
     </p>
   </template>
 
   <template id="thanksMessage">
     <p>
-      <p>
       Thank you for making time for my questions, helping me when
-      I was figuring things out, and making the workday a little easier. 😊
-</p>
+      I was figuring things out, and making the workday a little
+      easier. 😊
     </p>
 
     <p>
@@ -364,37 +477,42 @@
 
   <template id="finalMessage">
     <p>
-  Shristi, I hope you give yourself credit for the effort you put
-  in and the kindness you show. You helped me while managing
-  your own work and stress, and that says a lot about you.
-  Your support made a difference, even when you may not
-  have realized it.
-  </p>
+      Shristi, I hope you give yourself credit for the effort you put
+      in and the kindness you show. You helped me while managing
+      your own work and stress, and that says a lot about you.
+      Your support made a difference, even when you may not
+      have realized it.
+    </p>
 
-  <p>
-  You’re already halfway towards what you want, and I truly
-  believe you have what it takes to go further. Don’t let
-  a difficult day make you forget your progress or doubt
-  your abilities. Your ideas matter, your effort matters,
-  and you deserve to feel proud of yourself—not only when
-  you reach your goals, but as you work towards them.
-  </p>
+    <p>
+      You’re already halfway towards what you want, and I truly
+      believe you have what it takes to go further. Don’t let
+      a difficult day make you forget your progress or doubt
+      your abilities. Your ideas matter, your effort matters,
+      and you deserve to feel proud of yourself—not only when
+      you reach your goals, but as you work towards them.
+    </p>
 
-  <p>
-  Happy Birthday, Shristi! May your hard work open the doors
-  you’ve been hoping for, and may you have the confidence
-  to walk through them. I hope you get everything your heart
-  wishes for, with the happiness and peace to enjoy it.
-  Keep believing in yourself—there’s so much ahead of you
-  worth looking forward to. 🎂💛
-  </p>
+    <p>
+      Happy Birthday, Shristi! May your hard work open the doors
+      you’ve been hoping for, and may you have the confidence
+      to walk through them. I hope you get everything your heart
+      wishes for, with the happiness and peace to enjoy it.
+      Keep believing in yourself—there’s so much ahead of you
+      worth looking forward to. 🎂✨
+    </p>
+
+    <p>
+      This little surprise is my way of saying that your kindness
+      hasn’t gone unnoticed. You made my days a little easier,
+      and I wanted to do something small to brighten yours.
+      Every birthday wish here comes from the heart. 🌻
+    </p>
   </template>
 
   <script>
     const audio = document.getElementById("birthdayAudio");
     const giftScreen = document.getElementById("giftScreen");
-    const giftImage = document.getElementById("giftImage");
-    const giftFallback = document.getElementById("giftFallback");
     const birthdayCard = document.getElementById("birthdayCard");
     const messageTitle = document.getElementById("messageTitle");
     const messageBody = document.getElementById("messageBody");
@@ -412,7 +530,7 @@
       {
         title: "From the person sitting next to you…",
         template: "workplaceMessage",
-        emoji: "🎁😄"
+        emoji: "🙌😄"
       },
       {
         title: "Something I appreciate about you",
@@ -422,7 +540,7 @@
       {
         title: "A little thank you",
         template: "thanksMessage",
-        emoji: "🌼💛"
+        emoji: "🌼😊"
       },
       {
         title: "Have a wonderful birthday!",
@@ -435,7 +553,7 @@
     let animationFrame = null;
     let typingGeneration = 0;
 
-    // Milliseconds per character. Increase for slower typing.
+    // Lower numbers mean faster typing.
     const typingSpeed = 12;
 
     const reducedMotion = window.matchMedia(
@@ -453,17 +571,6 @@
         : Array.from(text);
     }
 
-    function showGiftFallback() {
-      giftImage.hidden = true;
-      giftFallback.hidden = false;
-    }
-
-    giftImage.addEventListener("error", showGiftFallback);
-
-    if (giftImage.complete && giftImage.naturalWidth === 0) {
-      showGiftFallback();
-    }
-
     function stopTyping() {
       typingGeneration += 1;
 
@@ -479,11 +586,11 @@
       const generation = typingGeneration;
       const paragraphs = Array.from(template.content.children);
       const parts = [];
+
       let totalCharacters = 0;
 
       messageBody.replaceChildren();
 
-      // Prepare paragraphs while preserving their classes.
       paragraphs.forEach(source => {
         const element = source.cloneNode(false);
         const text = source.textContent.replace(/\s+/g, " ").trim();
@@ -528,7 +635,7 @@
           if (count > part.shown) {
             part.element.hidden = false;
 
-            // Only add characters. Never delete or type backward.
+            // Forward typing only. No backward deletion.
             part.element.append(
               document.createTextNode(
                 part.characters.slice(part.shown, count).join("")
@@ -561,9 +668,9 @@
 
       previousButton.hidden = index === 0;
       nextButton.hidden = index === messages.length - 1;
+
       progress.textContent = `${index + 1} of ${messages.length}`;
 
-      // Respect the device's accessibility preference.
       if (reducedMotion.matches) {
         messageBody.replaceChildren(
           template.content.cloneNode(true)
@@ -585,7 +692,7 @@
       audio.volume = 0.5;
 
       audio.play().catch(() => {
-        // Continue normally if music is unavailable.
+        // The greeting still works if music is unavailable.
       });
     });
 
