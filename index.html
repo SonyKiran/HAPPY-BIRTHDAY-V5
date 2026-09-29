@@ -39,6 +39,7 @@
       font-family: "Shippori Antique", sans-serif;
       color: var(--text);
       background: #eee3fa;
+      isolation: isolate;
     }
 
     .background {
@@ -55,6 +56,7 @@
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
+      pointer-events: none;
     }
 
     main {
@@ -63,7 +65,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 64px 18px;
+      padding: 36px 18px;
     }
 
     .gift-screen {
@@ -79,7 +81,7 @@
       padding: 16px;
       border: 0;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.78);
+      background: rgba(255, 255, 255, 0.8);
       box-shadow: 0 16px 55px rgba(45, 24, 69, 0.2);
       cursor: pointer;
       transition: transform 180ms ease;
@@ -140,6 +142,7 @@
     }
 
     .message {
+      min-height: 160px;
       font-size: clamp(15px, 2.5vw, 17px);
       line-height: 1.9;
     }
@@ -161,20 +164,35 @@
       font-size: 19px;
     }
 
-    .next-button {
+    .navigation {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
       margin-top: 28px;
-      padding: 14px 26px;
+    }
+
+    .nav-button {
+      padding: 13px 25px;
       border: none;
       border-radius: 999px;
       background: var(--purple);
       color: white;
       font: inherit;
       cursor: pointer;
-      box-shadow: 0 6px 18px rgba(105, 64, 149, 0.2);
     }
 
-    .next-button:hover {
+    .nav-button:hover {
       background: #543177;
+    }
+
+    .previous-button {
+      background: #eee4f5;
+      color: var(--purple);
+    }
+
+    .previous-button:hover {
+      background: #e2d2ee;
     }
 
     button:focus-visible {
@@ -183,24 +201,15 @@
     }
 
     .progress {
-      margin: 20px 0 0;
+      margin: 18px 0 0;
       color: #8b7697;
       font-size: 12px;
     }
 
-    .music-button {
-      position: fixed;
-      top: 12px;
-      right: 12px;
-      z-index: 2;
-      padding: 10px 15px;
-      border: 1px solid #e7d8ee;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.95);
-      color: var(--text);
-      font: inherit;
-      font-size: 12px;
-      cursor: pointer;
+    @media (prefers-reduced-motion: reduce) {
+      .gift-button {
+        transition: none;
+      }
     }
   </style>
 </head>
@@ -208,16 +217,11 @@
 <body>
   <div class="background" aria-hidden="true"></div>
 
-  <audio id="birthdayAudio" src="./DARLING.mp3" preload="none" loop></audio>
-
-  <button
-    id="musicButton"
-    class="music-button"
-    type="button"
-    hidden
-  >
-    Play music 🎵
-  </button>
+  <audio
+    id="birthdayAudio"
+    src="./DARLING.mp3"
+    preload="none"
+  ></audio>
 
   <main>
     <section id="giftScreen" class="gift-screen">
@@ -232,7 +236,9 @@
           src="./Valentine-Surprise.png"
           alt=""
         />
-        <span id="giftFallback" class="gift-fallback" hidden>🎁</span>
+        <span id="giftFallback" class="gift-fallback" hidden>
+          🎁
+        </span>
       </button>
 
       <p class="gift-label">Open the gift, Birthday Star! 🎁</p>
@@ -244,22 +250,39 @@
       aria-labelledby="messageTitle"
       hidden
     >
-      <p id="decoration" class="decoration" aria-hidden="true">🎂✨</p>
+      <p id="decoration" class="decoration" aria-hidden="true">
+        🎂✨
+      </p>
+
       <p class="eyebrow">Just a little birthday surprise</p>
 
       <h1 id="messageTitle" tabindex="-1"></h1>
 
       <div id="messageBody" class="message"></div>
 
-      <button id="nextButton" class="next-button" type="button">
-        A little more for you 💛
-      </button>
+      <div class="navigation">
+        <button
+          id="previousButton"
+          class="nav-button previous-button"
+          type="button"
+          hidden
+        >
+          ← Previous
+        </button>
+
+        <button
+          id="nextButton"
+          class="nav-button"
+          type="button"
+        >
+          Next →
+        </button>
+      </div>
 
       <p id="progress" class="progress"></p>
     </section>
   </main>
 
-  <!-- All messages are displayed instantly, with no typing or deleting. -->
   <template id="openingMessage">
     <p>
       I hope this year brings you the things you’ve wished for quietly,
@@ -320,15 +343,17 @@
 
     <p>
       Whenever I felt stressed, I’d turn to you—only to find you
-      were even more stressed. Somehow, we still found a reason
+      were even more stressed. Somehow, I found a reason
       to laugh! 😂
     </p>
   </template>
 
   <template id="thanksMessage">
     <p>
-      I know I talk a lot, so thank you for listening to my endless
-      chatter and helping me out along the way. 😄
+      <p>
+      Thank you for making time for my questions, helping me when
+      I was figuring things out, and making the workday a little easier. 😊
+</p>
     </p>
 
     <p>
@@ -356,55 +381,70 @@
 
   <script>
     const audio = document.getElementById("birthdayAudio");
-    const musicButton = document.getElementById("musicButton");
     const giftScreen = document.getElementById("giftScreen");
+    const giftImage = document.getElementById("giftImage");
+    const giftFallback = document.getElementById("giftFallback");
     const birthdayCard = document.getElementById("birthdayCard");
     const messageTitle = document.getElementById("messageTitle");
     const messageBody = document.getElementById("messageBody");
     const decoration = document.getElementById("decoration");
+    const previousButton = document.getElementById("previousButton");
     const nextButton = document.getElementById("nextButton");
     const progress = document.getElementById("progress");
-    const giftImage = document.getElementById("giftImage");
 
     const messages = [
       {
         title: "Happiest Birthday, Shristi!",
         template: "openingMessage",
-        emoji: "🎂✨",
-        button: "A little more for you 💛"
+        emoji: "🎂✨"
       },
       {
         title: "From the person sitting next to you…",
         template: "workplaceMessage",
-        emoji: "🎁😄",
-        button: "Next ✨"
+        emoji: "🎁😄"
       },
       {
         title: "Something I appreciate about you",
         template: "supportMessage",
-        emoji: "☕🌟",
-        button: "There’s more 💛"
+        emoji: "☕🌟"
       },
       {
         title: "A little thank you",
         template: "thanksMessage",
-        emoji: "🌼💛",
-        button: "One last birthday wish 🎂"
+        emoji: "🌼💛"
       },
       {
         title: "Have a wonderful birthday!",
         template: "finalMessage",
-        emoji: "🎉🎂",
-        button: ""
+        emoji: "🎉🎂"
       }
     ];
 
     let currentMessage = 0;
+    let animationFrame = null;
+    let typingGeneration = 0;
 
-    // Show an emoji gift if the local gift image is unavailable.
+    // Milliseconds per character. Increase for slower typing.
+    const typingSpeed = 12;
+
+    const reducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    );
+
+    const segmenter =
+      typeof Intl.Segmenter === "function"
+        ? new Intl.Segmenter("en", { granularity: "grapheme" })
+        : null;
+
+    function splitCharacters(text) {
+      return segmenter
+        ? Array.from(segmenter.segment(text), item => item.segment)
+        : Array.from(text);
+    }
+
     function showGiftFallback() {
       giftImage.hidden = true;
-      document.getElementById("giftFallback").hidden = false;
+      giftFallback.hidden = false;
     }
 
     giftImage.addEventListener("error", showGiftFallback);
@@ -413,45 +453,113 @@
       showGiftFallback();
     }
 
-    function updateMusicButton() {
-      musicButton.textContent = audio.paused
-        ? "Play music 🎵"
-        : "Pause music 🔇";
+    function stopTyping() {
+      typingGeneration += 1;
 
-      musicButton.setAttribute(
-        "aria-label",
-        audio.paused ? "Play birthday music" : "Pause birthday music"
-      );
-    }
-
-    async function playMusic() {
-      try {
-        await audio.play();
-      } catch (error) {
-        // The greeting still works when audio is unavailable.
-        console.info("Music could not start:", error.message);
+      if (animationFrame !== null) {
+        cancelAnimationFrame(animationFrame);
+        animationFrame = null;
       }
 
-      updateMusicButton();
+      messageBody.removeAttribute("aria-busy");
+    }
+
+    function typeMessage(template) {
+      const generation = typingGeneration;
+      const paragraphs = Array.from(template.content.children);
+      const parts = [];
+      let totalCharacters = 0;
+
+      messageBody.replaceChildren();
+
+      // Prepare paragraphs while preserving their classes.
+      paragraphs.forEach(source => {
+        const element = source.cloneNode(false);
+        const text = source.textContent.replace(/\s+/g, " ").trim();
+        const characters = splitCharacters(text);
+
+        element.hidden = true;
+        messageBody.appendChild(element);
+
+        parts.push({
+          element,
+          characters,
+          start: totalCharacters,
+          shown: 0
+        });
+
+        totalCharacters += characters.length;
+      });
+
+      messageBody.setAttribute("aria-busy", "true");
+
+      const startTime = performance.now();
+
+      function tick(now) {
+        if (generation !== typingGeneration) {
+          return;
+        }
+
+        const visibleCharacters = Math.min(
+          totalCharacters,
+          Math.floor((now - startTime) / typingSpeed) + 1
+        );
+
+        parts.forEach(part => {
+          const count = Math.max(
+            0,
+            Math.min(
+              part.characters.length,
+              visibleCharacters - part.start
+            )
+          );
+
+          if (count > part.shown) {
+            part.element.hidden = false;
+
+            // Only add characters. Never delete or type backward.
+            part.element.append(
+              document.createTextNode(
+                part.characters.slice(part.shown, count).join("")
+              )
+            );
+
+            part.shown = count;
+          }
+        });
+
+        if (visibleCharacters < totalCharacters) {
+          animationFrame = requestAnimationFrame(tick);
+        } else {
+          animationFrame = null;
+          messageBody.removeAttribute("aria-busy");
+        }
+      }
+
+      animationFrame = requestAnimationFrame(tick);
     }
 
     function showMessage(index) {
+      stopTyping();
+
       const message = messages[index];
       const template = document.getElementById(message.template);
 
-      // Insert the entire message instantly.
-      // No typing animation, deletion, looping, or automatic delay.
       messageTitle.textContent = message.title;
       decoration.textContent = message.emoji;
-      messageBody.replaceChildren(template.content.cloneNode(true));
 
-      const isLastMessage = index === messages.length - 1;
+      previousButton.hidden = index === 0;
+      nextButton.hidden = index === messages.length - 1;
+      progress.textContent = `${index + 1} of ${messages.length}`;
 
-      nextButton.hidden = isLastMessage;
-      nextButton.textContent = message.button;
-      progress.textContent = isLastMessage
-        ? "Made with warm birthday wishes 💛"
-        : `${index + 1} of ${messages.length}`;
+      // Respect the device's accessibility preference.
+      if (reducedMotion.matches) {
+        messageBody.replaceChildren(
+          template.content.cloneNode(true)
+        );
+      } else {
+        typeMessage(template);
+      }
 
       window.scrollTo({ top: 0, behavior: "instant" });
       messageTitle.focus({ preventScroll: true });
@@ -460,10 +568,21 @@
     document.getElementById("openGift").addEventListener("click", () => {
       giftScreen.hidden = true;
       birthdayCard.hidden = false;
-      musicButton.hidden = false;
 
       showMessage(currentMessage);
-      playMusic();
+
+      audio.volume = 0.5;
+
+      audio.play().catch(() => {
+        // Continue normally if music is unavailable.
+      });
+    });
+
+    previousButton.addEventListener("click", () => {
+      if (currentMessage > 0) {
+        currentMessage -= 1;
+        showMessage(currentMessage);
+      }
     });
 
     nextButton.addEventListener("click", () => {
@@ -472,17 +591,6 @@
         showMessage(currentMessage);
       }
     });
-
-    musicButton.addEventListener("click", () => {
-      if (audio.paused) {
-        playMusic();
-      } else {
-        audio.pause();
-      }
-    });
-
-    audio.addEventListener("play", updateMusicButton);
-    audio.addEventListener("pause", updateMusicButton);
   </script>
 </body>
 </html>
