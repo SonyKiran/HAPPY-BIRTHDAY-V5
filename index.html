@@ -2,7 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  />
 
   <title>Happy Birthday, Shristi! 🎂</title>
   <meta
@@ -32,10 +35,15 @@
       display: none !important;
     }
 
+    html,
     body {
+      width: 100%;
+      height: 100%;
       margin: 0;
-      min-height: 100vh;
-      min-height: 100dvh;
+      overflow: hidden;
+    }
+
+    body {
       font-family: "Shippori Antique", sans-serif;
       color: var(--text);
       background: #eee3fa;
@@ -60,36 +68,46 @@
     }
 
     main {
-      min-height: 100vh;
-      min-height: 100dvh;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 40px 18px;
+      width: 100%;
+      height: 100vh;
+      height: 100dvh;
+      padding: 12px;
+      padding-top: max(12px, env(safe-area-inset-top));
+      padding-right: max(12px, env(safe-area-inset-right));
+      padding-bottom: max(12px, env(safe-area-inset-bottom));
+      padding-left: max(12px, env(safe-area-inset-left));
     }
 
     .gift-screen {
       width: min(100%, 440px);
+      max-height: 100%;
+      overflow-y: auto;
       text-align: center;
+      padding: 8px;
     }
 
     .gift-button {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 250px;
-      height: 250px;
+      width: min(230px, 55vw, 45vh);
+      height: min(230px, 55vw, 45vh);
+      width: min(230px, 55vw, 45dvh);
+      height: min(230px, 55vw, 45dvh);
       padding: 12px;
       border: 3px solid rgba(255, 255, 255, 0.95);
       border-radius: 50%;
       background: #fffaf0;
-      box-shadow: 0 16px 55px rgba(45, 24, 69, 0.22);
+      box-shadow: 0 12px 35px rgba(45, 24, 69, 0.2);
       cursor: pointer;
       transition: transform 180ms ease;
     }
 
     .gift-button:hover {
-      transform: scale(1.04) rotate(-2deg);
+      transform: scale(1.03) rotate(-2deg);
     }
 
     .friendship-art {
@@ -98,8 +116,8 @@
     }
 
     .gift-label {
-      margin: 24px 0 0;
-      padding: 15px 20px;
+      margin: 18px 0 0;
+      padding: 12px 16px;
       border-radius: 24px;
       background: rgba(255, 255, 255, 0.94);
       line-height: 1.7;
@@ -108,7 +126,7 @@
     .gift-label strong {
       display: block;
       color: var(--purple);
-      font-size: 19px;
+      font-size: 18px;
     }
 
     .gift-label span {
@@ -116,45 +134,71 @@
     }
 
     .card {
+      display: flex;
+      flex-direction: column;
       width: min(100%, 720px);
-      padding: clamp(24px, 5vw, 48px);
+      height: 100%;
+      max-height: 850px;
+      min-height: 0;
+      padding: clamp(16px, 3vw, 32px);
+      overflow: hidden;
       border: 1px solid rgba(255, 255, 255, 0.9);
-      border-radius: 28px;
+      border-radius: 24px;
       background: rgba(255, 252, 255, 0.97);
       box-shadow: 0 20px 65px rgba(45, 24, 69, 0.22);
       text-align: center;
       overflow-wrap: break-word;
     }
 
+    .card-header {
+      flex-shrink: 0;
+      max-height: 35%;
+      overflow-y: auto;
+    }
+
     .decoration {
-      margin: 0 0 14px;
-      font-size: 40px;
+      margin: 0 0 6px;
+      font-size: clamp(26px, 5vw, 38px);
     }
 
     .eyebrow {
-      margin: 0 0 12px;
+      margin: 0 0 8px;
       color: #846592;
-      font-size: 11px;
-      letter-spacing: 2px;
+      font-size: 10px;
+      letter-spacing: 1.5px;
       text-transform: uppercase;
     }
 
     h1 {
-      margin: 0 0 24px;
+      margin: 0 0 14px;
       font-family: "Dancing Script", cursive;
-      font-size: clamp(36px, 7vw, 54px);
-      line-height: 1.2;
+      font-size: clamp(28px, 6vw, 44px);
+      line-height: 1.15;
       color: var(--purple);
     }
 
     .message {
-      min-height: 160px;
-      font-size: clamp(15px, 2.5vw, 17px);
-      line-height: 1.9;
+      flex: 1;
+      min-height: 0;
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      scrollbar-gutter: stable;
+      padding: 4px 8px;
+      font-size: clamp(14px, 2.5vw, 17px);
+      line-height: 1.75;
+      text-align: left;
+      scrollbar-width: thin;
+      scrollbar-color: #c6afd8 transparent;
+    }
+
+    .message:focus-visible {
+      outline: 2px solid #a28ade;
+      outline-offset: -2px;
+      border-radius: 8px;
     }
 
     .message p {
-      margin: 0 0 18px;
+      margin: 0 0 16px;
     }
 
     .message p:last-child {
@@ -162,29 +206,35 @@
     }
 
     .message .quote {
-      margin: 24px 0;
-      padding: 20px;
+      margin: 16px 0;
+      padding: 14px;
       border-radius: 16px;
       background: #f3eaf9;
       color: #654180;
-      font-size: 18px;
+      font-size: inherit;
+    }
+
+    .card-footer {
+      flex-shrink: 0;
     }
 
     .navigation {
       display: flex;
       justify-content: center;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 28px;
+      gap: 10px;
+      margin-top: 14px;
     }
 
     .nav-button {
-      padding: 13px 25px;
+      min-height: 44px;
+      min-width: 0;
+      padding: 11px 20px;
       border: none;
       border-radius: 999px;
       background: var(--purple);
       color: white;
       font: inherit;
+      font-size: 14px;
       cursor: pointer;
     }
 
@@ -203,13 +253,56 @@
 
     button:focus-visible {
       outline: 3px solid #d29334;
-      outline-offset: 5px;
+      outline-offset: 3px;
     }
 
     .progress {
-      margin: 18px 0 0;
+      margin: 10px 0 0;
       color: #8b7697;
-      font-size: 12px;
+      font-size: 11px;
+    }
+
+    @media (max-height: 500px) {
+      main {
+        padding: 8px;
+        padding-left: max(8px, env(safe-area-inset-left));
+        padding-right: max(8px, env(safe-area-inset-right));
+        padding-bottom: max(8px, env(safe-area-inset-bottom));
+      }
+
+      .card {
+        padding: 10px 14px;
+        border-radius: 16px;
+      }
+
+      .decoration,
+      .eyebrow {
+        display: none;
+      }
+
+      h1 {
+        font-size: 26px;
+        margin-bottom: 8px;
+      }
+
+      .navigation {
+        margin-top: 8px;
+      }
+
+      .progress {
+        margin-top: 5px;
+      }
+    }
+
+    @media (max-width: 340px) {
+      .card {
+        padding: 12px;
+      }
+
+      .nav-button {
+        padding: 10px 14px;
+        font-size: 13px;
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -237,8 +330,7 @@
         type="button"
         aria-label="High five! Open Shristi's birthday surprise"
       >
-        <!-- Friendship illustration: two characters high-fiving. -->
-        <!-- Built into the HTML; no separate image is required. -->
+        <!-- Friendship high-five illustration. -->
         <svg
           class="friendship-art"
           viewBox="0 0 240 240"
@@ -248,19 +340,18 @@
         >
           <circle cx="120" cy="120" r="112" fill="#FFF3D6" />
 
-          <!-- Confetti -->
           <path
             d="M44 64l7 7M190 64l-6 8M59 40l3 9M177 38l-3 10"
             stroke="#A28ADE"
             stroke-width="5"
             stroke-linecap="round"
           />
+
           <circle cx="35" cy="108" r="4" fill="#EFB847" />
           <circle cx="205" cy="105" r="4" fill="#56ADA4" />
           <circle cx="82" cy="34" r="3" fill="#56ADA4" />
           <circle cx="157" cy="28" r="3" fill="#EFB847" />
 
-          <!-- High-five sparkle -->
           <path
             d="M120 30v13M99 39l8 9M141 39l-8 9"
             fill="none"
@@ -269,7 +360,6 @@
             stroke-linecap="round"
           />
 
-          <!-- Arms -->
           <path
             d="M85 151Q107 125 117 74"
             fill="none"
@@ -277,6 +367,7 @@
             stroke-width="15"
             stroke-linecap="round"
           />
+
           <path
             d="M155 151Q134 125 123 74"
             fill="none"
@@ -285,7 +376,6 @@
             stroke-linecap="round"
           />
 
-          <!-- Hands -->
           <path
             d="M116 81l-2-19M122 81l3-19"
             fill="none"
@@ -293,6 +383,7 @@
             stroke-width="9"
             stroke-linecap="round"
           />
+
           <path
             d="M125 81l3-18"
             fill="none"
@@ -301,31 +392,29 @@
             stroke-linecap="round"
           />
 
-          <!-- Bodies -->
           <path
             d="M38 207v-38a34 34 0 0168 0v38"
             fill="#55ADA5"
           />
+
           <path
             d="M134 207v-38a34 34 0 0168 0v38"
             fill="#A28ADE"
           />
 
-          <!-- Heads -->
           <circle cx="72" cy="113" r="27" fill="#D79C73" />
           <circle cx="168" cy="113" r="27" fill="#A96F50" />
 
-          <!-- Hair -->
           <path
             d="M45 108c-3-36 52-44 55-5-12-3-22-10-27-18-5 13-16 20-28 23"
             fill="#443047"
           />
+
           <path
             d="M141 109c-3-37 54-42 55-3-12-1-24-8-29-18-5 12-15 19-26 21"
             fill="#443047"
           />
 
-          <!-- Eyes -->
           <g fill="#392747">
             <circle cx="63" cy="115" r="2.4" />
             <circle cx="81" cy="115" r="2.4" />
@@ -333,7 +422,6 @@
             <circle cx="177" cy="115" r="2.4" />
           </g>
 
-          <!-- Smiles -->
           <path
             d="M65 124q7 8 14 0M161 124q7 8 14 0"
             fill="none"
@@ -342,7 +430,6 @@
             stroke-linecap="round"
           />
 
-          <!-- Shirt details -->
           <path
             d="M61 153q11 10 22 0M157 153q11 10 22 0"
             fill="none"
@@ -366,34 +453,44 @@
       aria-labelledby="messageTitle"
       hidden
     >
-      <p id="decoration" class="decoration" aria-hidden="true"></p>
+      <header class="card-header">
+        <p id="decoration" class="decoration" aria-hidden="true"></p>
 
-      <p class="eyebrow">A little surprise, with warm wishes</p>
+        <p class="eyebrow">A little surprise, with warm wishes</p>
 
-      <h1 id="messageTitle" tabindex="-1"></h1>
+        <h1 id="messageTitle" tabindex="-1"></h1>
+      </header>
 
-      <div id="messageBody" class="message"></div>
+      <div
+        id="messageBody"
+        class="message"
+        role="region"
+        aria-label="Birthday message"
+        tabindex="0"
+      ></div>
 
-      <div class="navigation">
-        <button
-          id="previousButton"
-          class="nav-button previous-button"
-          type="button"
-          hidden
-        >
-          ← Previous
-        </button>
+      <footer class="card-footer">
+        <div class="navigation">
+          <button
+            id="previousButton"
+            class="nav-button previous-button"
+            type="button"
+            hidden
+          >
+            ← Previous
+          </button>
 
-        <button
-          id="nextButton"
-          class="nav-button"
-          type="button"
-        >
-          Next →
-        </button>
-      </div>
+          <button
+            id="nextButton"
+            class="nav-button"
+            type="button"
+          >
+            Next →
+          </button>
+        </div>
 
-      <p id="progress" class="progress"></p>
+        <p id="progress" class="progress"></p>
+      </footer>
     </section>
   </main>
 
@@ -553,7 +650,7 @@
     let animationFrame = null;
     let typingGeneration = 0;
 
-    // Lower numbers mean faster typing.
+    // Smaller values produce faster typewriting.
     const typingSpeed = 12;
 
     const reducedMotion = window.matchMedia(
@@ -635,7 +732,7 @@
           if (count > part.shown) {
             part.element.hidden = false;
 
-            // Forward typing only. No backward deletion.
+            // Add letters forwards only—never erase them.
             part.element.append(
               document.createTextNode(
                 part.characters.slice(part.shown, count).join("")
@@ -646,6 +743,7 @@
           }
         });
 
+        // Leave scrolling under the reader's control.
         if (visibleCharacters < totalCharacters) {
           animationFrame = requestAnimationFrame(tick);
         } else {
@@ -668,9 +766,9 @@
 
       previousButton.hidden = index === 0;
       nextButton.hidden = index === messages.length - 1;
-
       progress.textContent = `${index + 1} of ${messages.length}`;
 
+      // Respect the device's reduced-motion accessibility setting.
       if (reducedMotion.matches) {
         messageBody.replaceChildren(
           template.content.cloneNode(true)
@@ -679,7 +777,8 @@
         typeMessage(template);
       }
 
-      window.scrollTo({ top: 0, behavior: "instant" });
+      messageBody.scrollTop = 0;
+      messageTitle.parentElement.scrollTop = 0;
       messageTitle.focus({ preventScroll: true });
     }
 
@@ -692,7 +791,7 @@
       audio.volume = 0.5;
 
       audio.play().catch(() => {
-        // The greeting still works if music is unavailable.
+        // Messages still work if audio is unavailable.
       });
     });
 
