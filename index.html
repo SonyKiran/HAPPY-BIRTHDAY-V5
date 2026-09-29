@@ -1,95 +1,165 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta
-    content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=5"
     name="viewport"
+    content="width=device-width, initial-scale=1"
   />
-  <meta content="IE=edge" http-equiv="X-UA-Compatible" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  <title>Happy Birthday, Shristi! | Best Colleague &amp; Best Friend</title>
+  <meta
+    name="description"
+    content="A special birthday greeting for Shristi, my best colleague and best friend."
+  />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
   <link
-    href="https://fonts.googleapis.com/css2?family=Shippori+Antique:wght@400;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Shippori+Antique&family=Dancing+Script&display=swap"
     rel="stylesheet"
   />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap"
-    rel="stylesheet"
-  />
+
+  <link rel="stylesheet" href="./style.css" />
 
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js"></script>
-  <link rel="stylesheet" href="./style.css" />
   <script src="https://unpkg.com/typeit@8.7.0/dist/index.umd.js"></script>
 
-  <title>Wishes to My Girl | SonuKiran</title>
-  <link
-    rel="icon"
-    type="image/x-icon"
-    href="https://www.palingit.com/favicon.ico"
-  />
-  <meta name="description" content="A special birthday greeting" />
+  <style>
+    /* Change this filename to use a different background image. */
+    :root {
+      --birthday-wallpaper: url("./birthday-background.jpg");
+    }
+
+    html {
+      min-height: 100%;
+      background: #eee3fa;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      min-height: 100dvh;
+      background: #eee3fa;
+      font-family: "Shippori Antique", sans-serif;
+      isolation: isolate;
+    }
+
+    /* A gradient remains visible if the background image is missing. */
+    #bodyblur {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: -1;
+      opacity: 1;
+      filter: none;
+      background: linear-gradient(
+        135deg,
+        #ffe5ec 0%,
+        #e9ddff 50%,
+        #d9f1ff 100%
+      );
+    }
+
+    #wallpaper {
+      position: absolute;
+      inset: 0;
+      display: block;
+      width: 100%;
+      height: 100%;
+      background-image: var(--birthday-wallpaper);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      transition: transform 1.5s ease;
+      filter: none;
+    }
+
+    #bodyblur::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.18),
+        rgba(35, 18, 65, 0.55)
+      );
+    }
+
+    #ket span {
+      display: inline-block;
+      padding: 10px 18px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.85);
+      color: #45265f;
+      font-style: italic;
+    }
+
+    #kadoIn {
+      cursor: pointer;
+    }
+  </style>
 </head>
 
-<body
-  style="
-    background:
-      linear-gradient(to bottom, rgba(255, 0, 0, 0) 30%, red 100%),
-      url(./r.jpg);
-    height: 100vh;
-  "
->
-  <audio src="./DARLING.mp3" id="linkmp3" class="sembunyi"></audio>
+<body>
+  <audio
+    src="./DARLING.mp3"
+    id="linkmp3"
+    class="sembunyi"
+    preload="none"
+  ></audio>
 
-  <div id="bodyblur">
-    <!-- Wallpaper -->
-    <img src="" id="wallpaper" />
+  <div id="bodyblur" aria-hidden="true">
+    <div id="wallpaper"></div>
   </div>
 
   <div id="Content">
     <div id="kadoIn">
-      <!-- Gift Button -->
-      <img src="./Valentine-Surprise.png" alt="Open Gift Button" />
+      <img
+        src="./Valentine-Surprise.png"
+        alt="Open your birthday gift"
+      />
     </div>
 
     <p id="ket">
-      <span
-        style="
-          font-style: italic;
-          color: rgb(0, 0, 0);
-          margin-top: 3px !important;
-        "
-      >
-        Open the gift, Cutie
-      </span>
+      <span>Open the gift, Birthday Star! 🎁</span>
     </p>
 
     <div class="kumpulanstiker" style="margin-top: 95px;">
-      <!-- Stickers for Content -->
       <img
         src="https://media.tenor.com/4Ijycn6xFzUAAAAj/mochi-blue-roses.gif"
         id="fotostiker"
+        alt="Birthday flowers"
       />
       <img
         src="https://feeldreams.github.io/bunga.gif"
         id="fotostiker1"
+        alt="Flowers"
       />
       <img
         src="https://feeldreams.github.io/pandacoklat.gif"
         id="fotostiker2"
+        alt="Birthday panda"
       />
       <img
         src="https://media.tenor.com/snFoLI-S9CQAAAAj/milk-and-mocha.gif"
         id="fotostiker3"
+        alt="Celebrating friends"
       />
       <img
         src="https://feeldreams.github.io/emawh.gif"
         id="fotostiker4"
+        alt="Happy birthday sticker"
       />
       <img
         src="https://feeldreams.github.io/pandacoklat.gif"
         id="fotostiker5"
+        alt="Celebration panda"
       />
     </div>
 
@@ -98,44 +168,49 @@
     <div>
       <blockquote
         id="bq"
-        data-text="💞💞💞💞💞💞💞💞💞💞💞💞💞💞💞💞💞💞💞"
+        data-text="🎉✨🎂🎁🥳✨🎉🎂🎁🥳✨🎉"
       >
         <p id="kalimat">
-          Happy Birthday, Gorgeous! Today is all about celebrating you.
+          Happy Birthday, Shristi! To the best colleague and an even
+          better friend. 🎂
         </p>
 
         <p id="pesan1">
-          Tap here for your small birthday surprise! 🎉
+          A little birthday surprise for an amazing friend! 🎉
         </p>
 
         <div id="kolombaru">
           <li id="lv1">🎂</li>
           <li id="lv2">🎁</li>
           <li id="lv3">🥳</li>
-          <li id="lv4">💖</li>
+          <li id="lv4">💛</li>
         </div>
 
         <p id="pesan2">
-          With each passing year, your charm only grows more captivating. ✨
+          Work brought us together, but the laughs, conversations,
+          and support made us best friends. ✨
         </p>
 
         <p id="pesan3">
-          Do you know what makes today truly exceptional?
+          Do you know what makes having you as a colleague so special?
         </p>
 
         <p id="pesan4" class="sty2">
-          It’s the day the world was graced with someone as incredible as you.
+          You make busy days easier, ordinary moments fun, and every
+          coffee break something to look forward to!
         </p>
 
         <p id="pesan5" class="sty2">
-          May this year bring you endless joy, quiet moments of bliss,
-          and memories as beautiful as your heart.
+          Thank you for always listening, helping out, and being someone
+          I can count on—at work and beyond. Your friendship means
+          so much to me.
         </p>
 
         <p id="pesan6" class="sty2">
-          You deserve nothing but the finest life has to offer — and I’ll be
-          here, cheering you on and cherishing you every step of the way.
-          Happy Birthday.
+          Wishing you a year full of happiness, exciting opportunities,
+          well-deserved success, and plenty of reasons to smile.
+          Happy Birthday, Shristi! Here’s to more laughs and great
+          memories together! 🎉
         </p>
 
         <p id="opsL">Tap to continue the celebration!</p>
@@ -150,9 +225,10 @@
       <img
         id="stikerditolak"
         src="https://feeldreams.github.io/weee.gif"
+        alt="Playful birthday sticker"
       />
       <p id="kataditolak">
-        Oops! You can’t skip this birthday magic.
+        Sending you birthday smiles anyway! 🎂
       </p>
     </div>
   </div>
@@ -168,68 +244,83 @@
       imageHeight: 90,
     });
 
-    audio = new Audio("" + linkmp3.src);
-    ftganti = 0;
-    fungsi = 0;
-    fungsiAwal = 0;
-    deffotostiker = fotostiker.src;
-
-    Content.style = "opacity:1;margin-top:16vh";
-
     const swals = Swal.mixin({
       allowOutsideClick: false,
       cancelButtonColor: "#FF0040",
       imageHeight: 80,
     });
 
-    document.getElementById("kadoIn").onclick = function () {
-      if (fungsiAwal == 0) {
-        audio.play();
-        fungsiAwal = 1;
+    // Globals used by the existing a.js animation script.
+    window.nama = "Shristi";
+    window.audio = document.getElementById("linkmp3");
+    window.ftganti = 0;
+    window.fungsi = 0;
+    window.fungsiAwal = 0;
+    window.deffotostiker = document.getElementById("fotostiker").src;
+    window.vketikhalo = "Happy Birthday, Shristi!";
 
-        kadoIn.style =
+    document.getElementById("Content").style.cssText =
+      "opacity:1;margin-top:16vh";
+
+    document.getElementById("kadoIn").onclick = function () {
+      if (window.fungsiAwal === 0) {
+        window.fungsiAwal = 1;
+
+        // Continue the greeting even if audio cannot play.
+        window.audio.play().catch(function (error) {
+          console.warn("Birthday audio could not play:", error);
+        });
+
+        document.getElementById("kadoIn").style.cssText =
           "transition:all .8s ease;transform:scale(10);opacity:0";
 
-        wallpaper.style = "transform: scale(1.5);";
-        ket.style = "display:none";
+        document.getElementById("wallpaper").style.transform =
+          "scale(1.15)";
+
+        document.getElementById("ket").style.display = "none";
 
         setTimeout(initengahan, 300);
         setTimeout(inipesan, 500);
       }
     };
 
-    // Set Shristi's name automatically without showing an input popup.
+    // Start automatically with Shristi's name—no name popup.
     async function inipesan() {
       window.nama = "Shristi";
-      vketikhalo = "Happy Birthday, " + window.nama + "!";
+      window.vketikhalo = "Happy Birthday, Shristi!";
       mulainama();
     }
 
-    var tanya = "How about we celebrate your birthday in style?";
-    var opstanya = "Your choice is:";
-    var tompositif = "Absolutely, let’s celebrate! 🎉";
-    var tomnegatif = "Maybe another time";
+    var tanya = "Ready for some birthday celebrations?";
+    var opstanya = "Let’s make it a day to remember!";
+    var tompositif = "Let’s celebrate! 🎉";
+    var tomnegatif = "Maybe later";
 
     async function pertanyaan() {
       var { isConfirmed: prtanya } = await swals.fire({
-        title: nama + ", " + tanya,
-        text: "" + opstanya,
-        imageUrl: "" + fotostiker5.src,
+        title: window.nama + ", " + tanya,
+        text: opstanya,
+        imageUrl: document.getElementById("fotostiker5").src,
         showCancelButton: true,
-        confirmButtonText: "" + tompositif,
-        cancelButtonText: "" + tomnegatif,
+        confirmButtonText: tompositif,
+        cancelButtonText: tomnegatif,
       });
 
       if (prtanya) {
-        pesanwhatsapp = "Yes " + nama + ", let the birthday magic begin!";
+        window.pesanwhatsapp =
+          "Happy Birthday, Shristi! To my best colleague and best friend—" +
+          "here’s to more laughs, success, and great memories together! 🎉";
+
         menuju();
       } else {
-        pesanwhatsapp = nama + ", don't miss out on the birthday fun!";
+        window.pesanwhatsapp =
+          "Happy Birthday, Shristi! Wishing you a wonderful day " +
+          "and an amazing year ahead! 🎂";
 
         await swalst.fire({
-          title: "" + kataditolak.innerHTML,
+          title: document.getElementById("kataditolak").textContent.trim(),
           timer: 2000,
-          imageUrl: "" + stikerditolak.src,
+          imageUrl: document.getElementById("stikerditolak").src,
         });
 
         menuju();
@@ -237,6 +328,6 @@
     }
   </script>
 
-  <script src="a.js"></script>
+  <script src="./a.js"></script>
 </body>
 </html>
