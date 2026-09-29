@@ -8,10 +8,10 @@
   />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-  <title>Happy Birthday, Shristi! | Best Colleague &amp; Best Friend</title>
+  <title>Happy Birthday, Shristi!</title>
   <meta
     name="description"
-    content="A special birthday greeting for Shristi, my best colleague and best friend."
+    content="A special birthday greeting for an amazing colleague, Shristi."
   />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -28,9 +28,8 @@
   <script src="https://unpkg.com/typeit@8.7.0/dist/index.umd.js"></script>
 
   <style>
-    /* Change this filename to use a different background image. */
     :root {
-      --birthday-wallpaper: url("./birthday-background.jpg");
+      --birthday-wallpaper: url("./happy-birthday-background-with-balloons-illustration-ai-generative-free-photo.jpg");
     }
 
     html {
@@ -47,7 +46,6 @@
       isolation: isolate;
     }
 
-    /* A gradient remains visible if the background image is missing. */
     #bodyblur {
       position: fixed;
       inset: 0;
@@ -149,7 +147,7 @@
       <img
         src="https://media.tenor.com/snFoLI-S9CQAAAAj/milk-and-mocha.gif"
         id="fotostiker3"
-        alt="Celebrating friends"
+        alt="Celebrating bears"
       />
       <img
         src="https://feeldreams.github.io/emawh.gif"
@@ -171,12 +169,12 @@
         data-text="🎉✨🎂🎁🥳✨🎉🎂🎁🥳✨🎉"
       >
         <p id="kalimat">
-          Happy Birthday, Shristi! To the best colleague and an even
-          better friend. 🎂
+          Happy Birthday, Shristi! Wishing an amazing colleague
+          a wonderful birthday. 🎂
         </p>
 
         <p id="pesan1">
-          A little birthday surprise for an amazing friend! 🎉
+          A little birthday surprise to make you smile! 🎉
         </p>
 
         <div id="kolombaru">
@@ -187,8 +185,11 @@
         </div>
 
         <p id="pesan2">
-          Work brought us together, but the laughs, conversations,
-          and support made us best friends. ✨
+          All my best buddies are people I’ve met at work.
+          I know you prefer not to make friends at work, and that’s okay!
+          We sit next to each other every day, and I spend so much
+          of my workday beside you—so of course I wanted to make
+          your birthday a little special! 🎉
         </p>
 
         <p id="pesan3">
@@ -196,24 +197,26 @@
         </p>
 
         <p id="pesan4" class="sty2">
-          You make busy days easier, ordinary moments fun, and every
-          coffee break something to look forward to!
+          You made my early days in the new role so much easier.
+          You probably don’t realize how much you helped!
+          Whenever I felt stressed, I’d turn to you—only to find
+          you were even more stressed. Somehow, we still found
+          a reason to laugh! 😂
         </p>
 
         <p id="pesan5" class="sty2">
-          Thank you for always listening, helping out, and being someone
-          I can count on—at work and beyond. Your friendship means
-          so much to me.
+          I know I talk a lot, so thank you for listening to my endless
+          chatter and helping me out along the way.
+          Your support has meant more than you probably realize!
         </p>
 
         <p id="pesan6" class="sty2">
-          Wishing you a year full of happiness, exciting opportunities,
-          well-deserved success, and plenty of reasons to smile.
-          Happy Birthday, Shristi! Here’s to more laughs and great
-          memories together! 🎉
+          Wishing you happiness, exciting opportunities, well-deserved
+          success, and a little less work stress this year!
+          Happy Birthday, Shristi! Enjoy your special day! 🎉
         </p>
 
-        <p id="opsL">Tap to continue the celebration!</p>
+        <p id="opsL">One last birthday wish for you! 🎂</p>
       </blockquote>
     </div>
 
@@ -221,6 +224,7 @@
       <a id="By">&#128140; Next</a>
     </div>
 
+    <!-- Kept for compatibility with your existing a.js. -->
     <div id="pesanditolak">
       <img
         id="stikerditolak"
@@ -228,7 +232,7 @@
         alt="Playful birthday sticker"
       />
       <p id="kataditolak">
-        Sending you birthday smiles anyway! 🎂
+        Sending you birthday smiles! 🎂
       </p>
     </div>
   </div>
@@ -250,7 +254,7 @@
       imageHeight: 80,
     });
 
-    // Globals used by the existing a.js animation script.
+    // Globals used by the existing animation script.
     window.nama = "Shristi";
     window.audio = document.getElementById("linkmp3");
     window.ftganti = 0;
@@ -266,7 +270,6 @@
       if (window.fungsiAwal === 0) {
         window.fungsiAwal = 1;
 
-        // Continue the greeting even if audio cannot play.
         window.audio.play().catch(function (error) {
           console.warn("Birthday audio could not play:", error);
         });
@@ -284,47 +287,28 @@
       }
     };
 
-    // Start automatically with Shristi's name—no name popup.
+    // Start with Shristi's name without asking for input.
     async function inipesan() {
       window.nama = "Shristi";
       window.vketikhalo = "Happy Birthday, Shristi!";
       mulainama();
     }
 
-    var tanya = "Ready for some birthday celebrations?";
-    var opstanya = "Let’s make it a day to remember!";
-    var tompositif = "Let’s celebrate! 🎉";
-    var tomnegatif = "Maybe later";
-
+    // Final birthday message: no navigation or photo pages.
     async function pertanyaan() {
-      var { isConfirmed: prtanya } = await swals.fire({
-        title: window.nama + ", " + tanya,
-        text: opstanya,
-        imageUrl: document.getElementById("fotostiker5").src,
-        showCancelButton: true,
-        confirmButtonText: tompositif,
-        cancelButtonText: tomnegatif,
+      await swals.fire({
+        title: "Happy Birthday, Shristi! 🎂",
+        text:
+          "Thank you for being such a supportive colleague. " +
+          "Wishing you more happiness, less stress, and plenty of " +
+          "reasons to smile. Enjoy your special day! 🎉",
+        showCancelButton: false,
+        confirmButtonText: "Thank you! 💛",
+        allowOutsideClick: false,
       });
 
-      if (prtanya) {
-        window.pesanwhatsapp =
-          "Happy Birthday, Shristi! To my best colleague and best friend—" +
-          "here’s to more laughs, success, and great memories together! 🎉";
-
-        menuju();
-      } else {
-        window.pesanwhatsapp =
-          "Happy Birthday, Shristi! Wishing you a wonderful day " +
-          "and an amazing year ahead! 🎂";
-
-        await swalst.fire({
-          title: document.getElementById("kataditolak").textContent.trim(),
-          timer: 2000,
-          imageUrl: document.getElementById("stikerditolak").src,
-        });
-
-        menuju();
-      }
+      document.getElementById("Tombol").style.display = "none";
+      document.getElementById("opsL").style.display = "none";
     }
   </script>
 
